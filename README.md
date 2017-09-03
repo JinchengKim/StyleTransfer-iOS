@@ -2,7 +2,7 @@
 This is a collection for style transfer in iOS.
 
 #### ScreenShoot
-![image1](https://github.com/kingandyoga/StyleTransfer-iOS/blob/master/ScreenShoot/shoot1.jpeg =200)
+![image1 width=200](https://github.com/kingandyoga/StyleTransfer-iOS/blob/master/ScreenShoot/shoot1.jpeg)
 
 ![image2](https://github.com/kingandyoga/StyleTransfer-iOS/blob/master/ScreenShoot/shoot2.jpeg =200)
 
