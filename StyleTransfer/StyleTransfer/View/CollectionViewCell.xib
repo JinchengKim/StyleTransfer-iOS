@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jxF-HI-v6P">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                        <connections>
+                            <action selector="clilck:" destination="gTV-IL-0wX" eventType="touchUpInside" id="5wi-gg-qa6"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFd-8V-nez">
+                        <rect key="frame" x="0.0" y="75" width="100" height="25"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5gS-L0-bN5">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="25"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="5gS-L0-bN5" firstAttribute="centerY" secondItem="eFd-8V-nez" secondAttribute="centerY" id="5Wt-fg-3hl"/>
+                            <constraint firstItem="5gS-L0-bN5" firstAttribute="centerX" secondItem="eFd-8V-nez" secondAttribute="centerX" id="6Mb-tM-nrX"/>
+                            <constraint firstItem="5gS-L0-bN5" firstAttribute="height" secondItem="eFd-8V-nez" secondAttribute="height" id="7Tl-6a-E8C"/>
+                            <constraint firstItem="5gS-L0-bN5" firstAttribute="width" secondItem="eFd-8V-nez" secondAttribute="width" id="IVQ-eq-EI1"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="jxF-HI-v6P" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" id="CKR-9f-KnP"/>
+                <constraint firstItem="eFd-8V-nez" firstAttribute="leading" secondItem="jxF-HI-v6P" secondAttribute="leading" id="GAQ-Me-nvY"/>
+                <constraint firstItem="eFd-8V-nez" firstAttribute="width" secondItem="jxF-HI-v6P" secondAttribute="width" id="UY7-zP-TJH"/>
+                <constraint firstItem="jxF-HI-v6P" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="iUk-pe-9gq"/>
+                <constraint firstItem="eFd-8V-nez" firstAttribute="height" secondItem="jxF-HI-v6P" secondAttribute="height" multiplier="0.25" id="qbc-DS-dQ7"/>
+                <constraint firstItem="eFd-8V-nez" firstAttribute="bottom" secondItem="jxF-HI-v6P" secondAttribute="bottom" id="s1m-gQ-Hap"/>
+                <constraint firstItem="jxF-HI-v6P" firstAttribute="centerY" secondItem="SEy-5g-ep8" secondAttribute="centerY" id="tjf-8D-ZlN"/>
+                <constraint firstItem="jxF-HI-v6P" firstAttribute="centerX" secondItem="SEy-5g-ep8" secondAttribute="centerX" id="uUa-yy-fRc"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <size key="customSize" width="99" height="100"/>
+            <connections>
+                <outlet property="bgButton" destination="jxF-HI-v6P" id="UkK-xE-UaU"/>
+                <outlet property="labelBgView" destination="eFd-8V-nez" id="2VC-cg-Alg"/>
+                <outlet property="nameLabel" destination="5gS-L0-bN5" id="hQQ-eH-owd"/>
+            </connections>
+            <point key="canvasLocation" x="66" y="79"/>
+        </collectionViewCell>
+    </objects>
+</document>
