@@ -16,6 +16,7 @@
 #import "STShipwreckMLModel.h"
 #import "STUdnieMLModel.h"
 #import "STWaveMLModel.h"
+@import Vision;
 
 @interface StyleTransferManager()
 @property (nonatomic, strong) STMuseMLModel *museModel;
@@ -43,49 +44,67 @@
     UIImage *resizedImage = [image resizedImage:CGSizeMake(inputWidth, inputHeight)];
     CGImageRef imageInputRef = image.CGImage;
     CVPixelBufferRef imageInputBufferRef = [UIImage CGImageToPixelBufferRGB:imageInputRef width:inputWidth height:inputHeight];
-    CVPixelBufferRef imageOutputBufferRef = NULL;
+    __block CVPixelBufferRef imageOutputBufferRef = NULL;
     NSError *error;
+    VNCoreMLModel *visionModel = nil;
     switch (type) {
         case StyleModelTypeMuse:
         {
             
-            STMuseMLModelOutput *outPut = [self.museModel predictionFromInput1:imageInputBufferRef error:&error];
-            imageOutputBufferRef = outPut.output1;
+            visionModel = [VNCoreMLModel modelForMLModel:self.museModel.model error:nil];
+            
         }
             break;
         case StyleModelTypeWave:
         {
-            STWaveMLModelOutput *outPut = [self.waveModel predictionFromInput1:imageInputBufferRef error:&error];
-            imageOutputBufferRef = outPut.output1;
+            visionModel = [VNCoreMLModel modelForMLModel:self.waveModel.model error:nil];
         }
             break;
         case StyleModelTypeScream:
         {
-            STScreamMLModelOutput *outPut = [self.screamModel predictionFromInput1:imageInputBufferRef error:&error];
-            imageOutputBufferRef = outPut.output1;
+            visionModel = [VNCoreMLModel modelForMLModel:self.screamModel.model error:nil];
+            
         }
             break;
         case StyleModelTypePrincess:
         {
-            STPrincessMLModelOutput *outPut = [self.princessModel predictionFromInput1:imageInputBufferRef error:&error];
-            imageOutputBufferRef = outPut.output1;
+            visionModel = [VNCoreMLModel modelForMLModel:self.princessModel.model error:nil];
+            
         }
             break;
         case StyleModelTypeShipWreck:
         {
-            STShipwreckMLModelOutput *outPut = [self.shipwreckModel predictionFromInput1:imageInputBufferRef error:&error];
-            imageOutputBufferRef = outPut.output1;
+            visionModel = [VNCoreMLModel modelForMLModel:self.shipwreckModel.model error:nil];
+            
         }
             break;
         case StyleModelTypeUdniePicabia:
         {
-            STUdnieMLModelOutput *outPut = [self.udnieModel predictionFromInput1:imageInputBufferRef error:&error];
-            imageOutputBufferRef = outPut.output1;
+            
+            visionModel = [VNCoreMLModel modelForMLModel:self.udnieModel.model error:nil];
+            
         }
             break;
         default:
             break;
     }
+    
+    VNCoreMLRequest *request = [[VNCoreMLRequest alloc] initWithModel:visionModel completionHandler:^(VNRequest * _Nonnull request, NSError * _Nullable error) {
+        NSArray<VNPixelBufferObservation *> *results = request.results;
+        if (results.count == 0) {
+            return ;
+        }
+        NSLog(@"2");
+        VNPixelBufferObservation *result = results.firstObject;
+        imageOutputBufferRef = result.pixelBuffer;
+    }];
+    
+    if (!visionModel) {
+        return nil;
+    }
+    
+    VNImageRequestHandler *handler = [[VNImageRequestHandler alloc] initWithCVPixelBuffer:imageInputBufferRef orientation:image.cgImagePropertyOrientation options:@{}];
+    [handler performRequests:@[request] error:nil];
     
     if (error) {
         NSLog(@"error code:%ld",(long)error.code);
